@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -17,23 +19,34 @@ public class Alumno implements Serializable {
 	private static final long serialVersionUID = 6973877800802243760L;
 
 	@Id
-	@Column(name = "clave_alumno", unique = true)
-	private int idAlumno;
-
-	@Column(name = "nombre")
-	private String nombre;
-
-	@Column(name = "edad")
-	private int edad;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_alumno", updatable = false, nullable = false)
+	private Long idAlumno;
 
 	@Column(name = "curso")
 	private String curso;
 
-	public int getIdAlumno() {
+	@Column(name = "edad")
+	private int edad;
+
+	@Column(name = "nombre")
+	private String nombre;
+
+	public Alumno() {
+	}
+
+	public Alumno(Long idAlumno, String curso, int edad, String nombre) {
+		this.idAlumno = idAlumno;
+		this.curso = curso;
+		this.edad = edad;
+		this.nombre = nombre;
+	}
+
+	public Long getIdAlumno() {
 		return idAlumno;
 	}
 
-	public void setIdAlumno(int idAlumno) {
+	public void setIdAlumno(Long idAlumno) {
 		this.idAlumno = idAlumno;
 	}
 
