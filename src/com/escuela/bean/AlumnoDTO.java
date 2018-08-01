@@ -6,14 +6,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 @XmlRootElement
-public class Alumno {
+public class AlumnoDTO {
 	@XmlElement(name = "alumnoname")
 	String alumnoname;
 
-	public Alumno() {
+	public AlumnoDTO() {
 	}
 
-	public Alumno(String alumnoname) {
+	public AlumnoDTO(String alumnoname) {
 		this.alumnoname = alumnoname;
 	}
 
