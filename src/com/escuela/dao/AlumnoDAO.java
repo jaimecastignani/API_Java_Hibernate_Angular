@@ -10,9 +10,9 @@ import com.escuela.jpa.Alumno;
  */
 public interface AlumnoDAO {
 
-	public void create(Long id, String name, int age, String curso);
+	public void create(Alumno alumno);
 
-	public void update(Long id, String name, int age, String curso);
+	public void update(Alumno alumno);
 
 	public void delete(Long id);
 
