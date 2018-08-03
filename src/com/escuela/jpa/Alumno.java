@@ -24,7 +24,7 @@ public class Alumno implements Serializable {
 	private Long idAlumno;
 
 	@Column(name = "curso")
-	private String curso;
+	private int curso;
 
 	@Column(name = "edad")
 	private int edad;
@@ -35,7 +35,7 @@ public class Alumno implements Serializable {
 	public Alumno() {
 	}
 
-	public Alumno(Long idAlumno, String curso, int edad, String nombre) {
+	public Alumno(Long idAlumno, int curso, int edad, String nombre) {
 		this.idAlumno = idAlumno;
 		this.curso = curso;
 		this.edad = edad;
@@ -66,11 +66,11 @@ public class Alumno implements Serializable {
 		this.edad = edad;
 	}
 
-	public String getCurso() {
+	public int getCurso() {
 		return curso;
 	}
 
-	public void setCurso(String curso) {
+	public void setCurso(int curso) {
 		this.curso = curso;
 	}
 

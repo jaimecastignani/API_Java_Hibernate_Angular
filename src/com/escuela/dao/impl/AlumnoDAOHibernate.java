@@ -137,7 +137,7 @@ public class AlumnoDAOHibernate implements AlumnoDAO {
 			// stu.setIdAlumno(id);
 			stu.setNombre("Test");
 			stu.setEdad(10);
-			stu.setCurso("Primero");
+			stu.setCurso(2);
 
 			// Save the student object
 			manager.persist(stu);
