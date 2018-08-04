@@ -8,6 +8,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import com.escuela.dao.AlumnoDAO;
+import com.escuela.dto.AlumnoDTO;
 import com.escuela.jpa.Alumno;
 
 public class AlumnoDAOHibernate implements AlumnoDAO {
@@ -119,9 +120,9 @@ public class AlumnoDAOHibernate implements AlumnoDAO {
 	}
 
 	@Override
-	public ArrayList<Alumno> getAll() {
+	public ArrayList<AlumnoDTO> getAll() {
 		ArrayList<Alumno> students = null;
-
+		ArrayList<AlumnoDTO> listAlumnos = new ArrayList<AlumnoDTO>();
 		// Create an EntityManager
 		EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
 		EntityTransaction transaction = null;
@@ -132,26 +133,14 @@ public class AlumnoDAOHibernate implements AlumnoDAO {
 			// Begin the transaction
 			transaction.begin();
 
-			// Create a new Student object
-			Alumno stu = new Alumno();
-			// stu.setIdAlumno(id);
-			stu.setNombre("Test");
-			stu.setEdad(10);
-			stu.setCurso(2);
-
-			// Save the student object
-			manager.persist(stu);
-
-			// Commit the transaction
-			transaction.commit();
-
 			// Get a List of Students
 			students = new ArrayList<Alumno>(manager.createQuery("FROM Alumno", Alumno.class).getResultList());
 
 			// Print all the Students
 			if (students != null) {
-				for (Object student : students) {
+				for (Alumno student : students) {
 					System.out.println(student);
+					listAlumnos.add(new AlumnoDTO(student)); 
 				}
 			}
 
@@ -164,9 +153,10 @@ public class AlumnoDAOHibernate implements AlumnoDAO {
 			ex.printStackTrace();
 		} finally {
 			// NEVER FORGET TO CLOSE THE ENTITY_MANAGER_FACTORY
-			ENTITY_MANAGER_FACTORY.close();
+			//ENTITY_MANAGER_FACTORY.close();
 		}
-		return students;
+		
+		return listAlumnos;
 	}
 
 }

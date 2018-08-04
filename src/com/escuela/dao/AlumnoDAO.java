@@ -2,6 +2,7 @@ package com.escuela.dao;
 
 import java.util.ArrayList;
 
+import com.escuela.dto.AlumnoDTO;
 import com.escuela.jpa.Alumno;
 
 /**
@@ -16,6 +17,6 @@ public interface AlumnoDAO {
 
 	public void delete(Long id);
 
-	public ArrayList<Alumno> getAll();
+	public ArrayList<AlumnoDTO> getAll();
 
 }

@@ -17,6 +17,6 @@ public class EscuelaService {
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response getAlumnos() {
 		AlumnoDAO dao = new AlumnoDAOHibernate();
-		return Response.status(200).entity(dao.getAll().toString()).build();
+		return Response.ok(dao.getAll().toString()).build();
 	}
 }
