@@ -44,7 +44,7 @@ public class AlumnoDAOHibernate implements AlumnoDAO {
 			ex.printStackTrace();
 		} finally {
 			// Close the EntityManager
-			ENTITY_MANAGER_FACTORY.close();
+			//ENTITY_MANAGER_FACTORY.close();
 		}
 	}
 
@@ -82,7 +82,7 @@ public class AlumnoDAOHibernate implements AlumnoDAO {
 			ex.printStackTrace();
 		} finally {
 			// Close the EntityManager
-			ENTITY_MANAGER_FACTORY.close();
+			//ENTITY_MANAGER_FACTORY.close();
 		}
 	}
 
@@ -115,7 +115,7 @@ public class AlumnoDAOHibernate implements AlumnoDAO {
 			ex.printStackTrace();
 		} finally {
 			// Close the EntityManager
-			ENTITY_MANAGER_FACTORY.close();
+			//ENTITY_MANAGER_FACTORY.close();
 		}
 	}
 

@@ -2,9 +2,13 @@ package com.escuela.service;
 
 import java.util.List;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -22,9 +26,46 @@ public class EscuelaService {
 	public Response getAlumnos() {
 		try {
 			AlumnoDAO dao = new AlumnoDAOHibernate();
-			GenericEntity<List<Alumno>> genericType = new GenericEntity<List<Alumno>>(dao.getAll()) {};
+			return Response.ok(new GenericEntity<List<Alumno>>(dao.getAll()) {}).build();
+		} catch (Exception e) {
+			return Response.status(Response.Status.BAD_REQUEST).build();
+		}
+	}
 
-			return Response.ok(genericType).build();
+	@PUT
+	@Path("create")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Response createAlumno(Alumno alumno) {
+		try {
+			AlumnoDAO dao = new AlumnoDAOHibernate();
+			dao.create(alumno);
+			return Response.ok().build();
+		} catch (Exception e) {
+			return Response.status(Response.Status.BAD_REQUEST).build();
+		}
+	}
+
+	@POST
+	@Path("update")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Response updateAlumno(Alumno alumno) {
+		try {
+			AlumnoDAO dao = new AlumnoDAOHibernate();
+			dao.update(alumno);
+			return Response.ok().build();
+		} catch (Exception e) {
+			return Response.status(Response.Status.BAD_REQUEST).build();
+		}
+	}
+
+	@DELETE
+	@Path("delete")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Response deleteAlumno(@QueryParam("idAlumno") Long idAlumno) {
+		try {
+			AlumnoDAO dao = new AlumnoDAOHibernate();
+			dao.delete(idAlumno);
+			return Response.ok().build();
 		} catch (Exception e) {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 		}
