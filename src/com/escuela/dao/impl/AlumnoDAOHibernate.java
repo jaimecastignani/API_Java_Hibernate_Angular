@@ -1,6 +1,7 @@
 package com.escuela.dao.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -8,7 +9,6 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import com.escuela.dao.AlumnoDAO;
-import com.escuela.dto.AlumnoDTO;
 import com.escuela.jpa.Alumno;
 
 public class AlumnoDAOHibernate implements AlumnoDAO {
@@ -120,9 +120,8 @@ public class AlumnoDAOHibernate implements AlumnoDAO {
 	}
 
 	@Override
-	public ArrayList<AlumnoDTO> getAll() {
+	public List<Alumno> getAll() {
 		ArrayList<Alumno> students = null;
-		ArrayList<AlumnoDTO> listAlumnos = new ArrayList<AlumnoDTO>();
 		// Create an EntityManager
 		EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
 		EntityTransaction transaction = null;
@@ -140,7 +139,6 @@ public class AlumnoDAOHibernate implements AlumnoDAO {
 			if (students != null) {
 				for (Alumno student : students) {
 					System.out.println(student);
-					listAlumnos.add(new AlumnoDTO(student)); 
 				}
 			}
 
@@ -156,7 +154,7 @@ public class AlumnoDAOHibernate implements AlumnoDAO {
 			//ENTITY_MANAGER_FACTORY.close();
 		}
 		
-		return listAlumnos;
+		return students;
 	}
 
 }
