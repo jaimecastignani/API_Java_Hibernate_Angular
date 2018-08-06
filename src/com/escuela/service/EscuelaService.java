@@ -2,6 +2,7 @@ package com.escuela.service;
 
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -22,7 +23,7 @@ public class EscuelaService {
 
 	@GET
 	@Path("alumnos")
-	@Produces({ MediaType.APPLICATION_JSON })
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAlumnos() {
 		try {
 			AlumnoDAO dao = new AlumnoDAOHibernate();
@@ -34,7 +35,7 @@ public class EscuelaService {
 
 	@PUT
 	@Path("create")
-	@Produces({ MediaType.APPLICATION_JSON })
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createAlumno(Alumno alumno) {
 		try {
 			AlumnoDAO dao = new AlumnoDAOHibernate();
@@ -47,7 +48,7 @@ public class EscuelaService {
 
 	@POST
 	@Path("update")
-	@Produces({ MediaType.APPLICATION_JSON })
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateAlumno(Alumno alumno) {
 		try {
 			AlumnoDAO dao = new AlumnoDAOHibernate();
@@ -60,7 +61,7 @@ public class EscuelaService {
 
 	@DELETE
 	@Path("delete")
-	@Produces({ MediaType.APPLICATION_JSON })
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteAlumno(@QueryParam("idAlumno") Long idAlumno) {
 		try {
 			AlumnoDAO dao = new AlumnoDAOHibernate();

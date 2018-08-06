@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 @Entity
 @Table(name = "alumno")
 @XmlRootElement(name = "alumno")
@@ -23,14 +25,18 @@ public class Alumno implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_alumno", updatable = false, nullable = false)
+	@JsonInclude(JsonInclude.Include.NON_NULL)
 	private Long idAlumno;
 
+	@JsonInclude(JsonInclude.Include.NON_NULL)
 	@Column(name = "curso")
 	private int curso;
 
+	@JsonInclude(JsonInclude.Include.NON_NULL)
 	@Column(name = "edad")
 	private int edad;
 
+	@JsonInclude(JsonInclude.Include.NON_NULL)
 	@Column(name = "nombre")
 	private String nombre;
 
