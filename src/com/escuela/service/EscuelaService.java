@@ -27,7 +27,20 @@ public class EscuelaService {
 	public Response getAlumnos() {
 		try {
 			AlumnoDAO dao = new AlumnoDAOHibernate();
-			return Response.ok(new GenericEntity<List<Alumno>>(dao.getAll()) {}).build();
+			return Response.ok(new GenericEntity<List<Alumno>>(dao.getAll()) {
+			}).build();
+		} catch (Exception e) {
+			return Response.status(Response.Status.BAD_REQUEST).build();
+		}
+	}
+
+	@GET
+	@Path("find")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response findById(@QueryParam("idAlumno") Long idAlumno) {
+		try {
+			AlumnoDAO dao = new AlumnoDAOHibernate();
+			return Response.ok(dao.findById(idAlumno)).build();
 		} catch (Exception e) {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 		}

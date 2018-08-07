@@ -1,0 +1,147 @@
+{
+	"info": {
+		"_postman_id": "d5eb7886-479f-48fe-a08f-60af38a3a598",
+		"name": "ESCUELA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"_postman_id": "41cb7f2b-3690-4538-a993-e373aed654de",
+			"name": "GET ALUMNOS",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/alumnos",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"alumnos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "0128b3f4-b2c2-4c5f-adcb-76c63b6d7a2c",
+			"name": "FIND BY ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/find?idAlumno=2",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"find"
+					],
+					"query": [
+						{
+							"key": "idAlumno",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "7dca424b-a91f-40b4-a56e-d697e31ee6ff",
+			"name": "CREATE",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"Test2\",\n\t\"edad\":14,\n\t\"curso\":3\n}"
+				},
+				"url": {
+					"raw": "{{url}}/create",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "4a789af2-6207-4419-ab98-ec8ebf72ed8c",
+			"name": "UPDATE",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"idAlumno\": 1,\n\t\"nombre\":\"Test5\",\n\t\"edad\":15,\n\t\"curso\":4\n}"
+				},
+				"url": {
+					"raw": "{{url}}/update",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "777ce82e-3f9b-4524-8db8-352c680bb2a3",
+			"name": "DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/delete?idAlumno=17",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"delete"
+					],
+					"query": [
+						{
+							"key": "idAlumno",
+							"value": "17"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

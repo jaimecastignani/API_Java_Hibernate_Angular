@@ -13,7 +13,8 @@ import com.escuela.jpa.Alumno;
 
 public class AlumnoDAOHibernate implements AlumnoDAO {
 	// Create an EntityManagerFactory when you start the application.
-	private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("PERSISTENCE");
+	private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence
+			.createEntityManagerFactory("PERSISTENCE");
 
 	// @PersistenceContext(unitName = "PERSISTENCE")
 	// private static EntityManager manager;
@@ -44,16 +45,15 @@ public class AlumnoDAOHibernate implements AlumnoDAO {
 			ex.printStackTrace();
 		} finally {
 			// Close the EntityManager
-			//ENTITY_MANAGER_FACTORY.close();
+			// ENTITY_MANAGER_FACTORY.close();
 		}
 	}
 
 	@Override
-	public void update(Alumno alumno) {
+	public Alumno update(Alumno alumno) {
 		// Create an EntityManager
 		EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
 		EntityTransaction transaction = null;
-
 		try {
 			// Get a transaction
 			transaction = manager.getTransaction();
@@ -73,6 +73,9 @@ public class AlumnoDAOHibernate implements AlumnoDAO {
 
 			// Commit the transaction
 			transaction.commit();
+
+			// Get the Student object
+			alumno = manager.find(Alumno.class, alumno.getIdAlumno());
 		} catch (Exception ex) {
 			// If there are any exceptions, roll back the changes
 			if (transaction != null) {
@@ -82,8 +85,9 @@ public class AlumnoDAOHibernate implements AlumnoDAO {
 			ex.printStackTrace();
 		} finally {
 			// Close the EntityManager
-			//ENTITY_MANAGER_FACTORY.close();
+			// ENTITY_MANAGER_FACTORY.close();
 		}
+		return alumno;
 	}
 
 	@Override
@@ -115,7 +119,7 @@ public class AlumnoDAOHibernate implements AlumnoDAO {
 			ex.printStackTrace();
 		} finally {
 			// Close the EntityManager
-			//ENTITY_MANAGER_FACTORY.close();
+			// ENTITY_MANAGER_FACTORY.close();
 		}
 	}
 
@@ -151,10 +155,39 @@ public class AlumnoDAOHibernate implements AlumnoDAO {
 			ex.printStackTrace();
 		} finally {
 			// NEVER FORGET TO CLOSE THE ENTITY_MANAGER_FACTORY
-			//ENTITY_MANAGER_FACTORY.close();
+			// ENTITY_MANAGER_FACTORY.close();
 		}
-		
+
 		return students;
 	}
 
+	@Override
+	public Alumno findById(Long id) {
+		// Create an EntityManager
+		EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
+		EntityTransaction transaction = null;
+		Alumno alumno = new Alumno();
+		try {
+			// Get a transaction
+			transaction = manager.getTransaction();
+			// Begin the transaction
+			transaction.begin();
+
+			// Get the Student object
+			alumno = manager.find(Alumno.class, id);
+
+		} catch (Exception ex) {
+			// If there are any exceptions, roll back the changes
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			// Print the Exception
+			ex.printStackTrace();
+		} finally {
+			// Close the EntityManager
+			// ENTITY_MANAGER_FACTORY.close();
+		}
+
+		return alumno;
+	}
 }
